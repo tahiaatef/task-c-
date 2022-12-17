@@ -87,31 +87,122 @@ class student : person (){
 }
 
       
-     class staff : person{
-        public double salary;
-        public int joinyear;
-        public staff(double _salary , int _joinyear) : base(_name , _age){
-            salary = _salary;
-            joinyear = _joinyear;
+ class staff : person{
+    private int _JoinYear;
+    public int JoinYear
+           {
+                  get 
+                      {
+                          return _JoinYear;
+                      } 
+                   set
+                        {
+                           _JoinYear=value;
+                        }   
+            }
+    private double _Salary;
+    public double Salary
+            {
+                    get 
+                         {
+                            return _Salary;
+                         } 
+                   set
+                        {
+                           _Salary=value;
+                        }   
+            }
+    public Stuff(string name,int age,int joinyear,double salary ):base(name, age)
+    
+            {
+               if(salary>=0 || salary<120000)
+                      {
+                          throw new Exception("invalid salary");  
+                       }
+               if(joinyear!=age+21)
+                       {
+                            throw new Exception("invalid joinyear");
+                        }
+               Salary=salary;
+               JoinYear=joinyear;
+            }
+    public override void Print()
+        {
+        Console.WriteLine($"my name is{Name},my age is {Getage()},and my salary is{Salary}");
         }
-        public override void print(){
-            Console.WriteLine("My name is " + name + "My age is " + age +"and my salary is " + salary);
-        }
-      }
+}
+      
      public class task1{
        public static void Main(){
-        var data = new database();
-        Console.WriteLine("Name: ");
-        var Name = Console.ReadLine();
-        Console.WriteLine("Age: ");
-        var Age =Convert.ToInt32( Console.ReadLine());
-        Console.WriteLine("Year: ");
-        var Year = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Gpa: ");
-        var Gpa = Convert.ToSingle(Console.ReadLine());
-        var stud = new student(Name , Age , Year , Gpa);
-
-       }
-    }
+              Console.Write("enter numberfrom 1 to 4:");
+              var number=Convert.ToInt32( Console.ReadLine());
+           if (number==1)
+             {
+                  var database= new Database();
+                  Console.Write("name:");
+                  var name=Console.ReadLine();
+                  Console.Write("age:");
+                  var age=Convert.ToInt32( Console.ReadLine());
+                  Console.Write("year:");
+                  var year=Convert.ToInt32( Console.ReadLine());
+                  Console.Write("gpa:");
+                  var gpa=Convert.ToSingle( Console.ReadLine());
+                  try
+                     {
+                        Student student=new Student(name,age,year,gpa);
+                        database.Addstudent(student);
+                     }
+                  catch
+                      {
+                        Console.WriteLine("invalid input"); 
+                      }
+     
+                }
+              else if(number==2)
+                 {
+                      var database= new Database();
+                      Console.Write("name:");
+                      var name=Console.ReadLine();
+                      Console.Write("age:");
+                      var age=Convert.ToInt32( Console.ReadLine());
+                      Console.Write("joinyear:");
+                      var joinyear=Convert.ToInt32( Console.ReadLine());
+                      Console.Write("slasry:"); 
+                      var salary=Convert.ToDouble( Console.ReadLine());
+                      try
+                          {
+                            var stuff=new Stuff (name,age,joinyear,salary);
+                             database.Addstuff(stuff);  
+                            }
+                       catch
+                           {
+                              Console.WriteLine("invalid input");      
+                           }
+                  }
+              else if(number==3)
+                   {
+                         var database= new Database();
+                         Console.Write("name:");
+                         var name=Console.ReadLine();
+                         Console.Write("age:");
+                         var age=Convert.ToInt32( Console.ReadLine());
+                         try
+                            {
+                              var person=new Person (name,age);
+                              database.Addperson(person);
+                            }
+                         catch(Exception e)
+                            {
+                               Console.WriteLine(e.Message);
+                            }
+                    }
+               else 
+                   {
+                     var database= new Database();
+                     database.PrintAll();  
+                   }
+}
+ }
+    
    
       
