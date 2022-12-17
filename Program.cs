@@ -45,3 +45,18 @@ namespace task;
             Console.WriteLine("My name is " + name + "My age is " + age +"and my salary is " + salary);
         }
     }
+     public class task1{
+       public static void Main(){
+        var data = new database();
+        Console.WriteLine("Name: ");
+        var Name = Console.ReadLine();
+        Console.WriteLine("Age: ");
+        var Age =Convert.ToInt32( Console.ReadLine());
+        Console.WriteLine("Year: ");
+        var Year = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Gpa: ");
+        var Gpa = Convert.ToSingle(Console.ReadLine());
+        var stud = new student(Name , Age , Year , Gpa);
+
+    }
+    }
