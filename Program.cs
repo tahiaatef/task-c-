@@ -115,11 +115,11 @@ class student : person (){
     public Stuff(string name,int age,int joinyear,double salary ):base(name, age)
     
             {
-               if(salary>=0 || salary<120000)
+               if(salary<=0 || salary>120000)
                       {
                           throw new Exception("invalid salary");  
                        }
-               if(joinyear!=age+21)
+               if(joinyear>age+21)
                        {
                             throw new Exception("invalid joinyear");
                         }
@@ -131,7 +131,35 @@ class student : person (){
         Console.WriteLine($"my name is{Name},my age is {Getage()},and my salary is{Salary}");
         }
 }
-      
+      public class Database
+{
+private int _current =0;   
+public Person [] Peple =new Person [50]; 
+public void Addperson (Person person)
+{
+  // if (_current==49) return; 
+   Peple[_current++]=person; 
+}
+public void Addstudent (Student student)
+{
+  // if (_current==49) return; 
+   Peple[_current++]=student; 
+}
+public void Addstuff (Stuff stuff)
+{
+  // if (_current==49) return; 
+   Peple[_current++]=stuff; 
+}
+public void PrintAll()
+{
+    for(var i = 0 ; i <_current; i++)
+    {
+        Peple[i].Print();
+    }
+  } 
+
+}
+
      public class task1{
        public static void Main(){
               Console.Write("enter numberfrom 1 to 4:");
